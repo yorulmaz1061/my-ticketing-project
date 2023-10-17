@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     @RequestMapping(value = {"/login","/"})
+    //it means that, localhost:8080/ or localhost:8080/login is going to navigate
+    //the same page
     public String login(){
 
         return "login";
