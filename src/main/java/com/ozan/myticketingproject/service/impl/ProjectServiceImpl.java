@@ -1,24 +1,25 @@
 package com.ozan.myticketingproject.service.impl;
 
-import com.ozan.myticketingproject.dto.PtojectDTO;
+import com.ozan.myticketingproject.dto.ProjectDTO;
 import com.ozan.myticketingproject.service.ProjectService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-public class ProjectServiceImpl extends AbstractMapService<PtojectDTO,String> implements ProjectService {
+@Service
+public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> implements ProjectService {
     // you need to use unique var which is project code
     @Override
-    public PtojectDTO save(PtojectDTO object) {
+    public ProjectDTO save(ProjectDTO object) {
         return super.save(object.getProjectCode(), object);
     }
 
     @Override
-    public List<PtojectDTO> findAll() {
+    public List<ProjectDTO> findAll() {
         return super.findAll();
     }
 
     @Override
-    public void update(PtojectDTO object) {
+    public void update(ProjectDTO object) {
         super.update(object.getProjectCode(),object);
     }
 
@@ -27,7 +28,7 @@ public class ProjectServiceImpl extends AbstractMapService<PtojectDTO,String> im
         super.deleteById(id);
     }
     @Override
-    public PtojectDTO findById(String id) {
+    public ProjectDTO findById(String id) {
         return super.findById(id);
     }
 }

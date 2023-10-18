@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class PtojectDTO {
+public class ProjectDTO {
     private String projectName;
     private String projectCode;
     private UserDTO assignedManager;
