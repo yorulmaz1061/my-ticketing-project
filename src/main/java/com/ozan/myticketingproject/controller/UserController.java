@@ -52,11 +52,20 @@ public class UserController {
         //I need that username
         //What attributes I need to define??Attributes Thymeleaf expression is ${}
         //attribute_name-value.. (* is field) user is attribute, roles is attribute, users is as well.
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", userService.findById(username));
         model.addAttribute("roles", roleService.findAll());
         model.addAttribute("users", userService.findAll());
 
         return "/user/update";
+    }
+    @PostMapping("/update/{username}")
+    //Actually since we don't pass path paramter we can skip{username}
+    //But I intentionally ve left it to be seen as a sample.
+    public String updateUser(@PathVariable("username") String username, UserDTO user){
+        userService.update(user);
+
+        return "redirect:/user/create";
+        //it will turn to user/create and apply it.
     }
 
 }

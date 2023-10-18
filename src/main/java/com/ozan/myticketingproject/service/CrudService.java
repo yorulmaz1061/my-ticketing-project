@@ -9,6 +9,8 @@ public interface CrudService <T,ID>{
     void deleteById(ID id);
     //T represents object
     //ID is String or Long
+    void update(T object);
+    //If anything new come to business logic, you can edit from CRUD.
 
 
 }
