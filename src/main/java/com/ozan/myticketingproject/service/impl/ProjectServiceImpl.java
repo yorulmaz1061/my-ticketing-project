@@ -1,6 +1,7 @@
 package com.ozan.myticketingproject.service.impl;
 
 import com.ozan.myticketingproject.dto.ProjectDTO;
+import com.ozan.myticketingproject.enums.Status;
 import com.ozan.myticketingproject.service.ProjectService;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,9 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> im
     // you need to use unique var which is project code
     @Override
     public ProjectDTO save(ProjectDTO object) {
+        if (object.getProjectStatus()==null){
+            object.setProjectStatus(Status.OPEN);
+        }
         return super.save(object.getProjectCode(), object);
     }
 
