@@ -52,6 +52,26 @@ public class ProjectController {
         return "redirect:/project/create";
     }
 
+    @GetMapping("/update/{projectcode}")
+    public String editProject(@PathVariable("projectcode") String projectcode, Model model){
+
+        model.addAttribute("project", projectService.findById(projectcode));
+        model.addAttribute("projects", projectService.findAll());
+        model.addAttribute("managers", userService.findManagers());
+
+        //It should return new view but the same view element so copy
+        //create.html and paste it to update.html
+        return"/project/update";
+    }
+
+    @PostMapping("/update")
+    //We don't need to use @PathVariable
+    public String updateProject(ProjectDTO project){
+        projectService.update(project);
+        return"redirect:/project/create";
+    }
+
+
 
 
 }
