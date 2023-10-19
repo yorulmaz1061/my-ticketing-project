@@ -5,6 +5,7 @@ import com.ozan.myticketingproject.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,11 +36,22 @@ public class ProjectController {
         //attribute. I will redirect to create end point and
         //attributes above methods will be executed again...
         projectService.save(project);
-
     return "redirect:/project/create";
     //When I click on save button I need to display the same page so, I should return the same endpoint.
-
-
     }
+    @GetMapping("/delete/{projectcode}")
+    //end point for unique identifier
+    public String deleteProject(@PathVariable("projectcode") String projectcode){
+        projectService.deleteById(projectcode);
+        return "redirect:/project/create";
+    }
+    @GetMapping("/complete/{projectcode}")
+    public String completeProject(@PathVariable("projectcode") String projectcode){
+        //this is not crud operator. This is different business logic.
+        projectService.complete(projectService.findById(projectcode));
+        return "redirect:/project/create";
+    }
+
+
 
 }
