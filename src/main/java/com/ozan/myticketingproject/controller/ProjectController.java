@@ -1,5 +1,6 @@
 package com.ozan.myticketingproject.controller;
 import com.ozan.myticketingproject.dto.ProjectDTO;
+import com.ozan.myticketingproject.dto.UserDTO;
 import com.ozan.myticketingproject.service.ProjectService;
 import com.ozan.myticketingproject.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/project")
@@ -69,6 +72,17 @@ public class ProjectController {
     public String updateProject(ProjectDTO project){
         projectService.update(project);
         return"redirect:/project/create";
+    }
+    @GetMapping("/manager/project-status")
+    public String getProjectByManager(Model model){
+        UserDTO manager=userService.findById("john@cydeo.com");
+
+        List<ProjectDTO> projects = projectService.getCountedListOfProjectDTO(manager);
+
+        model.addAttribute("projects", projects);
+
+        return "/manager/project-status";
+
     }
 
 

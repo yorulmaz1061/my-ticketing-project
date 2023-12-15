@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/create")
     public String createUser(Model model){
         model.addAttribute("user", new UserDTO());
-        //UserDTO will communicate, go to end-point html(create.html)
+        //UserDTO will communicate with UI and go to end-point html(create.html)
         model.addAttribute("roles", roleService.findAll());
         //RoleDTO role1=new RoleDTO....you cannot do this in the controller
         // also this data will come from dB. We have no dB but we will hook it to
@@ -44,7 +44,6 @@ public class UserController {
         // but with empty form. It must be returned with empty object.
         // That's why we need code above.
 
-
         return "redirect:/user/create";
     }
     @GetMapping("/update/{username}")
@@ -59,7 +58,7 @@ public class UserController {
         return "/user/update";
     }
     @PostMapping("/update/{username}")
-    //Actually since we don't pass path paramter we can skip{username}
+    //Actually since we don't pass path parameter we can skip{username}
     //But I intentionally ve left it to be seen as a sample.
     public String updateUser(@PathVariable("username") String username, UserDTO user){
         userService.update(user);
